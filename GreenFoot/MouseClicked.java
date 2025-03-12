@@ -11,3 +11,32 @@ public class Planta extends Actor
         }
     }
 }
+
+// ******************************************************************
+// Dragg image by Mouse
+
+public class Planta extends Actor
+{   
+    private boolean drag=false;
+    private int rx=0,ry=0;
+    
+    public void act()
+    {
+        if(Greenfoot.mouseDragged(this)){
+	        
+            MouseInfo mouse = Greenfoot.getMouseInfo();
+	        if(!drag){
+		        drag=true;
+		        rx=getX()-mouse.getX();
+		        ry=getY()-mouse.getY();	
+	        }
+	        else{
+		        setLocation(mouse.getX() +rx, mouse.getY()+ry);
+	        }
+
+	        if(Greenfoot.mouseDragEnded(this)){
+		        drag=false;
+	        }
+        }
+    }
+}
